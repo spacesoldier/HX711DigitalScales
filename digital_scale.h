@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 #include "HX711.h"
-
+#include "callable.h"
 
 class DigitalScale{
 
@@ -13,13 +13,26 @@ private:
   
   HX711 scale;    // parameter "gain" is ommited; the default value 128 is used by the library
 
+  int period;
+
+  double currWeight;
+  double delta;
+  double needWeight;
+  
   uint8_t state;
+
+  Callable* handler;
+
+  void readWeight();
+  bool weightAchieved();
+  void notifyHandler();
 public:
   DigitalScale();  
   void initialize();
   void tare();
-  void setWeigtLimit();
-  bool weightAchieved();
+  void setWeigtLimit(double);
+  void checkState();
+  void setHandler(Callable*);
 };
 
 #endif

@@ -19,11 +19,11 @@ void loop() {
 }
 
 // here we invoke the callback every given period of time
-//void checkTime(int oldTime, unsigned long& period, void callback()){
-//  if (millis() - oldTime > period ){
-//    callback();
-//    oldTime = millis();
-//  }
-//}
+void checkTime(int oldTime, unsigned long& period, void callback()){
+  if (millis() - oldTime > period ){
+    callback();
+    oldTime = millis();
+  }
+}
 
 

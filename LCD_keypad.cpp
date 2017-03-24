@@ -9,3 +9,11 @@ void LCDKeypad::initialize(){
   
 }
 
+void LCDKeypad::callback(){
+  
+}
+
+void LCDKeypad::callback(uint8_t state){
+  
+}
+

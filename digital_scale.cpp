@@ -2,6 +2,9 @@
 
 DigitalScale::DigitalScale(){
   state = 0;
+  currWeight = 0.0;
+  needWeight = 0.0;
+  delta = 0.0;
 }
 
 
@@ -13,18 +16,44 @@ void DigitalScale::initialize(){
 
 
 void DigitalScale::tare(){
-  
+  currWeight = 0.0;
 }
 
-void DigitalScale::setWeigtLimit(){
-  
+void DigitalScale::setWeigtLimit(double lim){
+  needWeight = lim;
 }
 
 
 bool DigitalScale::weightAchieved(){
-  
+  if (abs(needWeight - currWeight) < delta){
+    return true;
+  } else {
+    return false;
+  }
 }
 
+void DigitalScale::setHandler(Callable* handle){
+  handler = handle;
+}
 
+void DigitalScale::readWeight(){
+  scale.power_up();
+  scale.get_units(5);
+  scale.power_down();
+}
 
+void DigitalScale::checkState(){
+  readWeight();
+  if (weightAchieved()){
+    state++;
+    notifyHandler();
+  }
+}
+
+void DigitalScale::notifyHandler(){
+  if (handler != NULL){
+      handler -> callback();
+      handler -> callback(state);
+  }
+}
 
