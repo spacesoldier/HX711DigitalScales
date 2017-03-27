@@ -4,8 +4,9 @@
 #include <Arduino.h>
 #include "HX711.h"
 #include "callable.h"
+#include "dataprovider.h"
 
-class DigitalScale{
+class DigitalScale: public DataProvider{
 
 private:
   uint8_t HX711_DOUT = A2;
@@ -33,6 +34,8 @@ public:
   void setWeigtLimit(double);
   void checkState();
   void setHandler(Callable*);
+  double getData();
+  void setData(double);
 };
 
 #endif

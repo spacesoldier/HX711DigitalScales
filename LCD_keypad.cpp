@@ -1,8 +1,12 @@
 #include "LCD_keypad.h"
 
 LCDKeypad::LCDKeypad(){
-
+  scales = NULL;
   
+}
+
+void LCDKeypad::setSource(DataProvider * source){
+  scales = source;
 }
 
 void LCDKeypad::initialize(){

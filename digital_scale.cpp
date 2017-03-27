@@ -57,3 +57,11 @@ void DigitalScale::notifyHandler(){
   }
 }
 
+double DigitalScale::getData(){
+  return currWeight;
+}
+
+void DigitalScale::setData(double data){
+  needWeight = data;
+}
+

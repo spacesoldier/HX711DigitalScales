@@ -5,7 +5,9 @@ DigitalScale scales;
 LCDKeypad keypad;
 
 void setup() {
-
+  scales.setHandler(&keypad);
+  keypad.setSource(&scales);
+  
   // Scale init:
   scales.initialize();
   // keypad init
@@ -19,7 +21,7 @@ void loop() {
 }
 
 // here we invoke the callback every given period of time
-void checkTime(int oldTime, unsigned long& period, void callback()){
+void checkTime(unsigned long& oldTime, unsigned long period, void callback()){
   if (millis() - oldTime > period ){
     callback();
     oldTime = millis();
