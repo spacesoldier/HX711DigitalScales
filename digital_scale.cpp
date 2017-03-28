@@ -1,10 +1,11 @@
 #include "digital_scale.h"
 
 DigitalScale::DigitalScale(){
-  state = 0;
+  state = STANDBY;
   currWeight = 0.0;
   needWeight = 0.0;
   delta = 0.0;
+  period = 0;
 }
 
 
@@ -65,3 +66,9 @@ void DigitalScale::setData(double data){
   needWeight = data;
 }
 
+void DigitalScale::setPeriod(int period){
+  this->period = period;
+}
+int DigitalScale::getPeriod(){
+  return period;
+}

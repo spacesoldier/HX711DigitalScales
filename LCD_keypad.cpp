@@ -2,7 +2,8 @@
 
 LCDKeypad::LCDKeypad(){
   scales = NULL;
-  
+  screenPeriod = 0;
+  keysReadPeriod = 0;
 }
 
 void LCDKeypad::setSource(DataProvider * source){

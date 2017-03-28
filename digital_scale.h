@@ -14,12 +14,18 @@ private:
   
   HX711 scale;    // parameter "gain" is ommited; the default value 128 is used by the library
 
-  int period;
-
   double currWeight;
   double delta;
   double needWeight;
-  
+
+  int period;
+
+  enum ScaleState{
+    STANDBY,
+    AWAIT_TARE,
+    AWAIT_WEIGHT,
+    GOT_WEIGHT
+  };
   uint8_t state;
 
   Callable* handler;
@@ -32,6 +38,8 @@ public:
   void initialize();
   void tare();
   void setWeigtLimit(double);
+  void setPeriod(int);
+  int getPeriod();
   void checkState();
   void setHandler(Callable*);
   double getData();

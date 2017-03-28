@@ -9,6 +9,8 @@
 class LCDKeypad: public Callable{
 private:
   uint8_t keyPin = A0;
+  int screenPeriod;
+  int keysReadPeriod;
   DataProvider* scales;
 public:
   LCDKeypad();
